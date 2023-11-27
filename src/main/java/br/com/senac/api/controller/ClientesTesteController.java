@@ -1,7 +1,9 @@
 package br.com.senac.api.controller;
 
 import br.com.senac.api.entitys.ClientesTeste;
+import br.com.senac.api.entitys.EnderecoTeste;
 import br.com.senac.api.respositorys.ClientesTesteRespository;
+import br.com.senac.api.respositorys.EnderecoTesteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,6 +15,9 @@ public class ClientesTesteController {
 
     @Autowired
     private ClientesTesteRespository clientesTesteRespository;
+
+    @Autowired
+    private EnderecoTesteRepository enderecoTesteRepository;
 
     @PostMapping("/")
     public ResponseEntity<?> criarCliente
@@ -31,6 +36,14 @@ public class ClientesTesteController {
             record.setEnderecoTestes(clientesTeste.getEnderecoTestes());
             return clientesTesteRespository.save(record);
         }).get();
+
+        return ResponseEntity.ok(teste);
+    }
+
+    @PostMapping("/endereco")
+    public ResponseEntity<?> criarEndereco
+            (@RequestBody EnderecoTeste enderecoTeste) {
+        EnderecoTeste teste = enderecoTesteRepository.save(enderecoTeste);
 
         return ResponseEntity.ok(teste);
     }

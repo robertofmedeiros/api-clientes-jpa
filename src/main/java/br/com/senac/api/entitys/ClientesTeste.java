@@ -17,8 +17,7 @@ public class ClientesTeste {
     @Column
     private String sobreNome;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name = "clientes_teste_id")
+    @OneToMany(mappedBy = "clientesTeste", cascade = CascadeType.ALL)
     private List<EnderecoTeste> enderecoTestes = new ArrayList<>();
 
     public List<EnderecoTeste> getEnderecoTestes() {
@@ -28,6 +27,7 @@ public class ClientesTeste {
     public void setEnderecoTestes(List<EnderecoTeste> enderecoTestes) {
         this.enderecoTestes = enderecoTestes;
     }
+
 
     public Long getId() {
         return id;

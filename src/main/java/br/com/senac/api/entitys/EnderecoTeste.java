@@ -1,6 +1,7 @@
 package br.com.senac.api.entitys;
 
 import jakarta.persistence.*;
+import org.antlr.v4.runtime.misc.NotNull;
 
 @Entity
 public class EnderecoTeste {
@@ -13,6 +14,18 @@ public class EnderecoTeste {
 
     @Column
     private String bairro;
+
+    @ManyToOne
+    @JoinColumn(name = "clientes_teste_id")
+    private ClientesTeste clientesTeste;
+
+    public ClientesTeste getClientesTeste() {
+        return clientesTeste;
+    }
+
+    public void setClientesTeste(ClientesTeste clientesTeste) {
+        this.clientesTeste = clientesTeste;
+    }
 
     public Long getId() {
         return id;
