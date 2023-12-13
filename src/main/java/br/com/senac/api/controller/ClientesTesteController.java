@@ -9,6 +9,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("/clientes")
 public class ClientesTesteController {
@@ -19,6 +21,7 @@ public class ClientesTesteController {
     @Autowired
     private EnderecoTesteRepository enderecoTesteRepository;
 
+    @CrossOrigin
     @PostMapping("/")
     public ResponseEntity<?> criarCliente
             (@RequestBody ClientesTeste clientesTeste) {
@@ -26,6 +29,15 @@ public class ClientesTesteController {
 
         return ResponseEntity.ok(teste);
     }
+    @CrossOrigin
+    @GetMapping("/")
+    public ResponseEntity<?> carregarCliente() {
+        List<ClientesTeste> teste = clientesTesteRespository.findAll();
+
+        return ResponseEntity.ok(teste);
+    }
+
+    @CrossOrigin
     @PutMapping("/{id}")
     public ResponseEntity<?> atualizarCliente
             (@PathVariable Long id,
